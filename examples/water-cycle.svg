@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <title>The water cycle</title>
+  <style>
+    .arrow { fill: none; stroke: #1565c0; stroke-width: 5; stroke-linecap: round; }
+    .head { fill: #1565c0; }
+    .rain { fill: none; stroke: #1565c0; stroke-width: 4; stroke-dasharray: 10 8; }
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 22px; fill: #1d1d1f; }
+  </style>
+  <rect width="800" height="500" fill="#ffffff"/>
+  <polygon id="mountain" points="40,500 190,190 250,270 290,240 420,500" fill="#8d6e63"><title>Mountain</title></polygon>
+  <path id="sea" d="M470 420 Q560 405 650 415 T800 410 L800 500 L470 500 Z" fill="#4a90d9"><title>Sea</title></path>
+  <circle id="sun" cx="700" cy="90" r="42" fill="#f6c90e"><title>Sun</title></circle>
+  <path id="cloud" d="M200 165 A35 35 0 0 1 235 112 A52 52 0 0 1 322 96 A42 42 0 0 1 394 132 A30 30 0 0 1 402 165 Z" fill="#b0bec5"><title>Cloud</title></path>
+  <g id="evaporation">
+    <title>Evaporation</title>
+    <path class="arrow" d="M650 392 C670 300 600 215 430 182"/>
+    <polygon class="head" points="410,178 432,171 428,193"/>
+  </g>
+  <g id="precipitation">
+    <title>Precipitation</title>
+    <line class="rain" x1="276" y1="180" x2="256" y2="225"/>
+    <line class="rain" x1="322" y1="180" x2="302" y2="225"/>
+    <line class="rain" x1="368" y1="180" x2="348" y2="225"/>
+  </g>
+  <g id="collection">
+    <title>Collection</title>
+    <path class="arrow" d="M372 318 Q420 356 448 392"/>
+    <polygon class="head" points="460,408 437,398 455,386"/>
+  </g>
+  <text x="700" y="165" text-anchor="middle">Sun</text>
+  <text x="300" y="80" text-anchor="middle">Condensation</text>
+  <text x="665" y="300">Evaporation</text>
+  <text x="395" y="222">Precipitation</text>
+  <text x="440" y="322">Collection</text>
+  <text x="680" y="470" text-anchor="middle">Sea</text>
+  <text x="190" y="440" text-anchor="middle">Mountain</text>
+</svg>

@@ -1,0 +1,478 @@
+{
+ "type": "FeatureCollection",
+ "name": "Riverside Campus",
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Mill River",
+    "category": "water"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       0,
+       252
+      ],
+      [
+       100,
+       246
+      ],
+      [
+       200,
+       256
+      ],
+      [
+       300,
+       249
+      ],
+      [
+       400,
+       253
+      ],
+      [
+       400,
+       285
+      ],
+      [
+       0,
+       285
+      ],
+      [
+       0,
+       252
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Duck Pond",
+    "category": "water"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       377.0,
+       185.0
+      ],
+      [
+       374.6,
+       193.4
+      ],
+      [
+       367.6,
+       200.6
+      ],
+      [
+       357.2,
+       205.3
+      ],
+      [
+       345.0,
+       207.0
+      ],
+      [
+       332.8,
+       205.3
+      ],
+      [
+       322.4,
+       200.6
+      ],
+      [
+       315.4,
+       193.4
+      ],
+      [
+       313.0,
+       185.0
+      ],
+      [
+       315.4,
+       176.6
+      ],
+      [
+       322.4,
+       169.4
+      ],
+      [
+       332.8,
+       164.7
+      ],
+      [
+       345.0,
+       163.0
+      ],
+      [
+       357.2,
+       164.7
+      ],
+      [
+       367.6,
+       169.4
+      ],
+      [
+       374.6,
+       176.6
+      ],
+      [
+       377.0,
+       185.0
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Central Lawn",
+    "category": "green"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       150,
+       90
+      ],
+      [
+       250,
+       90
+      ],
+      [
+       250,
+       170
+      ],
+      [
+       150,
+       170
+      ],
+      [
+       150,
+       90
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Library",
+    "category": "building"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       55,
+       115
+      ],
+      [
+       125,
+       115
+      ],
+      [
+       125,
+       172
+      ],
+      [
+       55,
+       172
+      ],
+      [
+       55,
+       115
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Science Hall",
+    "category": "building"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       55,
+       45
+      ],
+      [
+       130,
+       45
+      ],
+      [
+       130,
+       95
+      ],
+      [
+       55,
+       95
+      ],
+      [
+       55,
+       45
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Gym",
+    "category": "building"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       270,
+       45
+      ],
+      [
+       375,
+       45
+      ],
+      [
+       375,
+       110
+      ],
+      [
+       270,
+       110
+      ],
+      [
+       270,
+       45
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Dining Hall",
+    "category": "building"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       160,
+       192
+      ],
+      [
+       235,
+       192
+      ],
+      [
+       235,
+       226
+      ],
+      [
+       160,
+       226
+      ],
+      [
+       160,
+       192
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "North Lot",
+    "category": "parking"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       55,
+       192
+      ],
+      [
+       130,
+       192
+      ],
+      [
+       130,
+       228
+      ],
+      [
+       55,
+       228
+      ],
+      [
+       55,
+       192
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Campus Drive",
+    "category": "road"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      0,
+      18
+     ],
+     [
+      400,
+      18
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "College Avenue",
+    "category": "road"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      22,
+      18
+     ],
+     [
+      22,
+      240
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Lawn Loop",
+    "category": "path"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      142,
+      82
+     ],
+     [
+      258,
+      82
+     ],
+     [
+      258,
+      178
+     ],
+     [
+      142,
+      178
+     ],
+     [
+      142,
+      82
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Main Walk",
+    "category": "path"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      200,
+      30
+     ],
+     [
+      200,
+      82
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "River Walk",
+    "category": "path"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      40,
+      239
+     ],
+     [
+      385,
+      239
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Main Gate",
+    "category": "entrance"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     214,
+     34
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Bus Stop",
+    "category": "bus stop"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     330,
+     32
+    ]
+   }
+  }
+ ]
+}
