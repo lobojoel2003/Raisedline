@@ -1,0 +1,151 @@
+name: CI
+
+on:
+  push:
+    branches: [main, 'claude/**']
+    tags-ignore: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  BUILD_NUMBER: ${{ github.run_number }}
+  FORCE_COLOR: '1'
+
+jobs:
+  checks:
+    name: Checks and unit tests (Node ${{ matrix.node }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [22, 24]
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v7
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - name: Install liblouis (Grade 2 braille and translator comparison tests)
+        run: sudo apt-get update -q && sudo apt-get install -y -q --no-install-recommends liblouis-bin
+      - run: npm ci
+      - name: Version is consistent
+        run: npm run version:check
+      - name: Typecheck
+        run: npm run typecheck
+      - name: Lint
+        run: npm run lint
+      - name: Formatting
+        run: npm run format:check
+      - name: Unit and CLI tests
+        run: npm run test:coverage
+      - name: Upload coverage
+        if: matrix.node == 22
+        uses: actions/upload-artifact@v7
+        with:
+          name: coverage
+          path: coverage/
+          retention-days: 14
+
+  build:
+    name: Build and package
+    needs: checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Build library, web app, offline app and CLI
+        run: npm run build
+      - name: Package artifacts
+        run: npm run release:package
+      - name: Build summary
+        run: |
+          {
+            echo "### Raisedline build ${BUILD_NUMBER}"
+            echo
+            echo '```'
+            node packages/cli/dist/raisedline.mjs --version
+            echo '```'
+            echo
+            echo '| Artifact | Size |'
+            echo '| --- | --- |'
+            for f in release/*; do echo "| $(basename "$f") | $(du -h "$f" | cut -f1) |"; done
+          } >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v7
+        with:
+          name: raisedline-build-${{ github.run_number }}
+          path: release/
+          retention-days: 30
+
+  e2e:
+    name: Browser tests
+    needs: checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Build the web app
+        run: npm run build -w @raisedline/web
+      - name: Run Playwright
+        run: npm run test:e2e
+      - name: Upload report
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 14
+
+  cli:
+    name: CLI on ${{ matrix.os }}
+    needs: checks
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Bundle the CLI
+        run: node packages/cli/build.mjs
+      - name: Smoke test
+        run: |
+          set -euo pipefail
+          cli="node packages/cli/dist/raisedline.mjs"
+          $cli --version
+          mkdir -p out
+          $cli chart examples/rainfall.csv --title "Monthly rainfall" -f pdf,svg,stl,brf,gcode,json -o out/rain
+          $cli svg examples/water-cycle.svg -o out/water.pdf
+          $cli trace examples/plant-cell.png -o out/cell.stl
+          $cli map examples/riverside-campus.geojson -f pdf,brf -o out/campus
+          $cli check out/rain.raisedline.json --strict
+          $cli braille "Hello world" --brf
+          ls -l out

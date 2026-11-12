@@ -1,0 +1,15 @@
+name: Feature request
+description: Suggest an idea or a new kind of graphic
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What are you trying to make?
+      description: Who is it for, and what does the reader need from it?
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would help?

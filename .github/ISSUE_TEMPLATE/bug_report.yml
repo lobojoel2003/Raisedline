@@ -1,0 +1,34 @@
+name: Bug report
+description: Something does not work or produces a wrong tactile graphic
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: Include the input file if you can (CSV, SVG, image or GeoJSON).
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: From `raisedline --version` or the web app footer
+      placeholder: 1.0.0+build.42.3f2a1bc
+    validations:
+      required: true
+  - type: dropdown
+    id: where
+    attributes:
+      label: Where?
+      options: [Web app, Offline HTML, Command line, Library]
+  - type: dropdown
+    id: output
+    attributes:
+      label: Output format (if relevant)
+      multiple: true
+      options: [PDF / swell paper, SVG, STL / 3D print, BRF / embosser, G-code / BrailleRAP, PNG]

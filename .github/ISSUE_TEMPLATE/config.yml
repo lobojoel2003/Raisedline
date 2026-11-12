@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/lobojoel2003/Raisedline/security/advisories/new
+    about: Report security issues privately.

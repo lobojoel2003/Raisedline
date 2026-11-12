@@ -1,0 +1,25 @@
+name: Braille translation
+description: The braille for a label is wrong
+labels: [braille]
+body:
+  - type: input
+    id: text
+    attributes:
+      label: Print text
+    validations:
+      required: true
+  - type: input
+    id: got
+    attributes:
+      label: Braille produced
+  - type: input
+    id: expected
+    attributes:
+      label: Expected braille
+    validations:
+      required: true
+  - type: input
+    id: code
+    attributes:
+      label: Braille code / table
+      placeholder: UEB Grade 1 (built in), liblouis en-ueb-g2.ctb, …
