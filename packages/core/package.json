@@ -1,0 +1,48 @@
+{
+  "name": "@raisedline/core",
+  "version": "1.0.0",
+  "description": "Turn charts, diagrams, images and maps into tactile graphics: braille labels, touch checks, and PDF/SVG/STL/BRF/G-code export.",
+  "license": "GPL-3.0-or-later",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lobojoel2003/Raisedline.git",
+    "directory": "packages/core"
+  },
+  "keywords": [
+    "tactile graphics",
+    "braille",
+    "accessibility",
+    "blind",
+    "swell paper",
+    "embosser",
+    "stl",
+    "ueb"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "dist"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "prepack": "node -e \"require('fs').copyFileSync('../../LICENSE','LICENSE')\""
+  },
+  "dependencies": {
+    "earcut": "^3.0.2"
+  },
+  "homepage": "https://github.com/lobojoel2003/Raisedline#readme",
+  "bugs": {
+    "url": "https://github.com/lobojoel2003/Raisedline/issues"
+  },
+  "author": "Raisedline contributors"
+}
