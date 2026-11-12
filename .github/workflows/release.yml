@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: Existing tag to (re)publish, e.g. v1.0.0
+        description: Version tag to release, e.g. v1.0.0. If the tag does not exist yet it is created on the commit this run builds.
         required: true
 
 permissions:
@@ -25,12 +25,25 @@ jobs:
     name: Build and publish
     runs-on: ubuntu-latest
     steps:
-      - name: Resolve tag
+      - name: Resolve tag and commit
         id: tag
-        run: echo "tag=${{ github.event.inputs.tag || github.ref_name }}" >> "$GITHUB_OUTPUT"
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.event.inputs.tag || github.ref_name }}
+        run: |
+          case "$TAG" in v[0-9]*.[0-9]*.[0-9]*) ;; *) echo "::error::\"$TAG\" is not a version tag like v1.2.3"; exit 1 ;; esac
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          # Build the tagged commit if the tag exists, otherwise the commit this run was started on.
+          if gh api "repos/${{ github.repository }}/git/ref/tags/$TAG" >/dev/null 2>&1; then
+            echo "ref=refs/tags/$TAG" >> "$GITHUB_OUTPUT"
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ref=${{ github.sha }}" >> "$GITHUB_OUTPUT"
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
       - uses: actions/checkout@v7
         with:
-          ref: ${{ steps.tag.outputs.tag }}
+          ref: ${{ steps.tag.outputs.ref }}
           fetch-depth: 0
       - uses: actions/setup-node@v7
         with:
@@ -62,8 +75,11 @@ jobs:
           if gh release view "$TAG" >/dev/null 2>&1; then
             gh release upload "$TAG" $files --clobber
             gh release edit "$TAG" --notes-file release/RELEASE_NOTES.md --title "Raisedline $version"
-          else
+          elif [ "${{ steps.tag.outputs.exists }}" = "true" ]; then
             gh release create "$TAG" $files --title "Raisedline $version" --notes-file release/RELEASE_NOTES.md --verify-tag $prerelease
+          else
+            # Creates the tag on the commit that was built and tested above.
+            gh release create "$TAG" $files --title "Raisedline $version" --notes-file release/RELEASE_NOTES.md --target "$(git rev-parse HEAD)" $prerelease
           fi
       - name: Summary
         run: |

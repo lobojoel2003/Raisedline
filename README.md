@@ -335,9 +335,11 @@ Install liblouis to also run the tests that compare the built-in translator with
   browser tests. Build outputs are uploaded as artifacts.
 - **Continuous deployment** ([`pages.yml`](.github/workflows/pages.yml)) publishes the web app
   to GitHub Pages from `main`.
-- **Releases** ([`release.yml`](.github/workflows/release.yml)) run when a `v*` tag is pushed:
-  they check that the tag matches the version, run the tests, build, package the artifacts
-  with SHA-256 checksums, and publish a GitHub Release with notes from the changelog.
+- **Releases** ([`release.yml`](.github/workflows/release.yml)) run when a `v*` tag is pushed,
+  or from **Actions → Release → Run workflow** with a tag name (the tag is then created on the
+  commit that was built). They check that the tag matches the version, run the tests, build,
+  package the artifacts with SHA-256 checksums, and publish a GitHub Release with notes from
+  the changelog.
 
 To cut a release:
 

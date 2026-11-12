@@ -57,4 +57,6 @@ git commit -am "chore(release): vX.Y.Z" && git tag -a vX.Y.Z -m "vX.Y.Z" && git 
 ```
 
 The release workflow checks the tag against the version, builds, tests and publishes the
-GitHub Release with all artifacts.
+GitHub Release with all artifacts. You can also skip the tag push: after pushing the version
+bump, open **Actions → Release → Run workflow** and enter the tag (for example `v1.1.0`); the
+workflow creates the tag on the commit it built.
