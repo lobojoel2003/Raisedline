@@ -1,0 +1,46 @@
+{
+  "name": "raisedline",
+  "version": "1.0.0",
+  "description": "Command-line tool to turn charts, SVG diagrams, images and maps into tactile graphics (PDF, SVG, STL, BRF, G-code).",
+  "license": "GPL-3.0-or-later",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lobojoel2003/Raisedline.git",
+    "directory": "packages/cli"
+  },
+  "keywords": [
+    "tactile graphics",
+    "braille",
+    "accessibility",
+    "blind",
+    "swell paper",
+    "embosser",
+    "stl",
+    "cli"
+  ],
+  "bin": {
+    "raisedline": "./dist/raisedline.mjs"
+  },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "dist"
+  ],
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "prepack": "node -e \"require('fs').copyFileSync('../../LICENSE','LICENSE')\""
+  },
+  "devDependencies": {
+    "jpeg-js": "^0.4.4",
+    "pngjs": "^7.0.0"
+  },
+  "homepage": "https://github.com/lobojoel2003/Raisedline#readme",
+  "bugs": {
+    "url": "https://github.com/lobojoel2003/Raisedline/issues"
+  },
+  "author": "Raisedline contributors"
+}
