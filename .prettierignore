@@ -1,0 +1,13 @@
+node_modules
+dist
+dist-single
+coverage
+release
+package-lock.json
+examples/output
+docs/images
+*.svg
+*.geojson
+*.brf
+*.gcode
+LICENSE
